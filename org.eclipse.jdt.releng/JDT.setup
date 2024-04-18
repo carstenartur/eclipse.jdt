@@ -10,7 +10,7 @@
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/JDT.ecore http://www.eclipse.org/oomph/predicates/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/SetupWorkingSets.ecore"
     name="jdt"
     label="JDT">
   <annotation
@@ -22,11 +22,17 @@
       xsi:type="setup.p2:P2Task">
     <requirement
         name="org.eclipse.jdt.junit4.runtime"/>
+    <requirement
+        name="org.eclipse.jdt.astview.feature.feature.group"
+        optional="true"/>
+    <requirement
+        name="org.eclipse.jdt.jeview.feature.feature.group"
+        optional="true"/>
   </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Xmx"
-      value="2048m"
+      value="4g"
       vm="true"/>
   <setupTask
       xsi:type="setup:ResourceCreationTask"
@@ -50,8 +56,8 @@
   </setupTask>
   <setupTask
       xsi:type="jdt:JRETask"
-      version="JavaSE-11"
-      location="${jre.location-11}"/>
+      version="JavaSE-17"
+      location="${jre.location-17}"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
@@ -122,6 +128,12 @@
           <value>remoteURI</value>
         </detail>
       </annotation>
+      <configSections
+          name="branch">
+        <properties
+            key="autoSetupRebase"
+            value="always"/>
+      </configSections>
       <description>JDT Features</description>
     </setupTask>
     <setupTask
@@ -178,6 +190,12 @@
           <value>remoteURI</value>
         </detail>
       </annotation>
+      <configSections
+          name="branch">
+        <properties
+            key="autoSetupRebase"
+            value="always"/>
+      </configSections>
       <description>JDT Core</description>
     </setupTask>
     <setupTask
@@ -282,6 +300,12 @@
             <value>remoteURI</value>
           </detail>
         </annotation>
+        <configSections
+            name="branch">
+          <properties
+              key="autoSetupRebase"
+              value="always"/>
+        </configSections>
         <description>JDT Core Tests</description>
       </setupTask>
       <setupTask
@@ -336,6 +360,12 @@
           <value>remoteURI</value>
         </detail>
       </annotation>
+      <configSections
+          name="branch">
+        <properties
+            key="autoSetupRebase"
+            value="always"/>
+      </configSections>
       <description>JDT Core</description>
     </setupTask>
     <setupTask
@@ -439,6 +469,12 @@
           <value>remoteURI</value>
         </detail>
       </annotation>
+      <configSections
+          name="branch">
+        <properties
+            key="autoSetupRebase"
+            value="always"/>
+      </configSections>
       <description>JDT UI</description>
     </setupTask>
     <setupTask
@@ -468,7 +504,7 @@
               xsi:type="predicates:NotPredicate">
             <operand
                 xsi:type="predicates:NamePredicate"
-                pattern=".*tests.*|.*examples.*"/>
+                pattern=".*tests.*|.*examples.*|.*sampleproject.*"/>
           </operand>
         </predicate>
       </workingSet>
@@ -484,10 +520,6 @@
               name="org.eclipse.jdt.text.tests"/>
           <requirement
               name="org.eclipse.jdt.ui.tests.refactoring"/>
-          <requirement
-              name="org.eclipse.ltk.core.refactoring.tests"/>
-          <requirement
-              name="org.eclipse.ltk.ui.refactoring.tests"/>
           <requirement
               name="org.eclipse.jdt.ui.unittest.junit.feature.feature.group"/>
         </targlet>

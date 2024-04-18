@@ -14,11 +14,11 @@
   <parent>
     <artifactId>eclipse.jdt</artifactId>
     <groupId>eclipse.jdt</groupId>
-    <version>4.27.0-SNAPSHOT</version>
+    <version>4.32.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.jdt.feature</groupId>
   <artifactId>org.eclipse.jdt</artifactId>
-  <version>3.19.0-SNAPSHOT</version>
+  <version>3.19.500-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
   <name>org eclipse jdt feature</name>
 
@@ -43,7 +43,6 @@
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-source-plugin</artifactId>
-        <version>${tycho.version}</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -66,7 +65,6 @@
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-p2-plugin</artifactId>
-        <version>${tycho.version}</version>
         <executions>
           <execution>
             <id>attach-p2-metadata</id>
